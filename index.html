@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ancient Polities of Bharatavarsha | Digital Historical Atlas & Museum</title>
+  <meta name="description" content="Explore the Mahajanapadas, Kingdoms, Republics, and Empires of ancient Bharatavarsha through an interactive digital museum, historical atlas, and educational archive.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Floating Golden Dust Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="app-wrapper">
+    <!-- STICKY NAVBAR -->
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="#home" class="brand-logo" onclick="scrollToSection('home')">
+          <div class="brand-icon">
+            <i data-lucide="sun" style="color: var(--gold-bright); width: 24px; height: 24px;"></i>
+          </div>
+          <div>
+            <div class="brand-title gold-gradient-text">BHARATAVARSHA</div>
+            <div class="brand-subtitle">Ancient Polities Archive</div>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><button class="nav-link-btn active" onclick="scrollToSection('home')">Home</button></li>
+          <li><button class="nav-link-btn" onclick="scrollToSection('categories')">Categories</button></li>
+          <li><button class="nav-link-btn" onclick="scrollToSection('archive')">Polity Archive</button></li>
+          <li><button class="nav-link-btn" onclick="scrollToSection('rulers')">Great Rulers</button></li>
+          <li><button class="nav-link-btn" onclick="scrollToSection('timeline')">Timeline</button></li>
+          <li><button class="nav-link-btn" onclick="scrollToSection('about')">Statecraft</button></li>
+        </ul>
+
+        <div class="search-container">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="nav-search" class="search-input" placeholder="Search polity, ruler, capital..." autocomplete="off">
+          <div id="search-dropdown" class="search-dropdown" style="display: none;"></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO SECTION -->
+      <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <div class="hero-badge">
+            <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+            HISTORICAL ATLAS & DIGITAL MUSEUM
+          </div>
+          <h1 class="hero-title gold-gradient-text">Ancient Polities of Bharatavarsha</h1>
+          <p class="hero-subtitle">
+            Explore the kingdoms, republics, confederacies, and empires that shaped the political, cultural, and spiritual trajectory of the Indian subcontinent across thousands of years.
+          </p>
+
+          <button class="hero-cta-btn" onclick="scrollToSection('categories')">
+            <span>Begin Exploration</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+
+          <!-- Live Stats Counter Bar -->
+          <div class="stats-bar">
+            <div class="stat-item">
+              <div class="stat-number">16</div>
+              <div class="stat-label">Mahajanapadas</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">11</div>
+              <div class="stat-label">Kingdoms</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Republics</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">18</div>
+              <div class="stat-label">Empires</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">8</div>
+              <div class="stat-label">Great Rulers</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAIN CATEGORIES SECTION -->
+      <section id="categories" class="categories-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">POLITICAL CATEGORIZATION</span>
+            <h2 class="section-title">Four Pillars of Sovereign Power</h2>
+            <div class="section-divider">
+              <div class="divider-line"></div>
+              <i data-lucide="shield" class="divider-icon"></i>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+
+          <div id="categories-grid" class="categories-grid"></div>
+        </div>
+      </section>
+
+      <!-- POLITY ARCHIVE / LISTING SECTION -->
+      <section id="archive" class="archive-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">HISTORICAL DATABASE</span>
+            <h2 class="section-title">Polity Archive & Explorer</h2>
+            <div class="section-divider">
+              <div class="divider-line"></div>
+              <i data-lucide="book-open" class="divider-icon"></i>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+
+          <!-- Filter & Search Controls -->
+          <div class="filter-bar">
+            <div class="filter-tabs">
+              <button class="filter-tab-btn active" data-category="all">All Polities (50)</button>
+              <button class="filter-tab-btn" data-category="mahajanapadas">Mahajanapadas (16)</button>
+              <button class="filter-tab-btn" data-category="kingdoms">Kingdoms (11)</button>
+              <button class="filter-tab-btn" data-category="republics">Republics (5)</button>
+              <button class="filter-tab-btn" data-category="empires">Empires (18)</button>
+            </div>
+          </div>
+
+          <!-- Cards Grid -->
+          <div id="polity-grid" class="polity-grid"></div>
+        </div>
+      </section>
+
+      <!-- GREAT RULERS SECTION -->
+      <section id="rulers" class="rulers-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">IMPERIAL LEADERSHIP</span>
+            <h2 class="section-title">Great Rulers & Monarchs</h2>
+            <div class="section-divider">
+              <div class="divider-line"></div>
+              <i data-lucide="crown" class="divider-icon"></i>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+
+          <div id="rulers-grid" class="rulers-grid"></div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE TIMELINE SECTION -->
+      <section id="timeline" class="timeline-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">CHRONOLOGICAL EVOLUTION</span>
+            <h2 class="section-title">Timeline of Bharatavarsha</h2>
+            <div class="section-divider">
+              <div class="divider-line"></div>
+              <i data-lucide="clock" class="divider-icon"></i>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+
+          <div id="timeline-container" class="timeline-container"></div>
+        </div>
+      </section>
+
+      <!-- ABOUT BHARATAVARSHA STATECRAFT -->
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="about-card">
+            <div class="section-header" style="margin-bottom: 2rem;">
+              <span class="section-tag">PHILOSOPHY OF GOVERNANCE</span>
+              <h2 class="section-title">Statecraft & Political Thought</h2>
+            </div>
+            
+            <p class="modal-text" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem; font-size: 1.05rem;">
+              The political history of ancient Bharatavarsha was guided by sophisticated philosophies of governance balancing <em>Dharma</em> (righteous order), <em>Artha</em> (economic prosperity), and <em>Rajadharma</em> (duty of the sovereign).
+            </p>
+
+            <div class="about-grid">
+              <div>
+                <h3 class="about-item-title">
+                  <i data-lucide="book-marked" style="color: var(--gold-primary);"></i>
+                  Kautilya's Arthashastra
+                </h3>
+                <p class="about-item-desc">
+                  Authored by Chanakya (Kautilya), the <em>Arthashastra</em> provided a masterwork on statecraft, espionage, economic administration, municipal taxation, and the <em>Saptanga</em> (seven limbs) model of state sovereignty.
+                </p>
+              </div>
+
+              <div>
+                <h3 class="about-item-title">
+                  <i data-lucide="users" style="color: var(--gold-primary);"></i>
+                  Sabha & Santhagara Democracy
+                </h3>
+                <p class="about-item-desc">
+                  Republican <em>Gana-Sanghas</em> like the Vajji and Shakya clans governed through elected assemblies. Decisions were reached via voting sticks (<em>Salaka</em>) and public consensus in council halls (<em>Santhagaras</em>).
+                </p>
+              </div>
+
+              <div>
+                <h3 class="about-item-title">
+                  <i data-lucide="globe" style="color: var(--gold-primary);"></i>
+                  Mandala Theory of Diplomacy
+                </h3>
+                <p class="about-item-desc">
+                  Ancient Indian diplomacy utilized the <em>Mandala</em> system—a strategic framework of geopolitical concentric circles detailing alliances, balance of power, and neutral state relations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand-title">Ancient Polities of Bharatavarsha</div>
+            <p class="footer-desc">
+              An educational digital museum and historical atlas dedicated to preserving and exploring the political heritage of ancient India.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+              <li><a href="#categories" onclick="scrollToSection('categories')">Main Categories</a></li>
+              <li><a href="#archive" onclick="scrollToSection('archive')">Polity Database</a></li>
+              <li><a href="#rulers" onclick="scrollToSection('rulers')">Great Rulers</a></li>
+              <li><a href="#timeline" onclick="scrollToSection('timeline')">Timeline</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Historical Primary Sources</h4>
+            <ul class="footer-links">
+              <li><a href="#" onclick="return false;">Kautilya's Arthashastra</a></li>
+              <li><a href="#" onclick="return false;">Edicts of Emperor Ashoka</a></li>
+              <li><a href="#" onclick="return false;">Buddhist Anguttara Nikaya</a></li>
+              <li><a href="#" onclick="return false;">Sangam Tamil Literature</a></li>
+              <li><a href="#" onclick="return false;">Megasthenes' Indica</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© Ancient Polities of Bharatavarsha. Educational Archive & Digital Museum. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Detail Modal Target -->
+  <div id="modal-container"></div>
+
+  <!-- Application Logic -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
